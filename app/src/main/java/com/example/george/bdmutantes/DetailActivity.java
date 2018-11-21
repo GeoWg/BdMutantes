@@ -36,6 +36,10 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    public void alteraMutante(View view){
+
+    }
+
     public void deleteMutante(View view){
         Intent it = getIntent();
         Bundle params = it.getExtras();

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -26,17 +27,17 @@ public class CadastrarActivity extends AppCompatActivity {
 
         //Depois de iniciar a Activity, se vier da main, os campos vem vazios, se vier da detail, vem preenchidos
 
-        Intent it = getIntent();
-        Bundle params = it.getExtras();
-        int id = params.getInt("idMutante");
+        //Intent it = getIntent();
+        //Bundle params = it.getExtras();
+        //int id = params.getInt("idMutante");
 
         mutanteOperation = new MutanteOperations(this);
         mutanteOperation.open();
 
-        if(id != 0) {
+        //if(id != 0) {
             //etHabilidades.setText(mutanteOperation.getMutanteById(id).getHabilidade(), EditText.BufferType.EDITABLE);
             //nome.setText(mutanteOperation.getMutanteById(id).getNome(), EditText.BufferType.EDITABLE);
-        }
+        //}
 
     }
 
@@ -47,28 +48,30 @@ public class CadastrarActivity extends AppCompatActivity {
             etNome = findViewById(R.id.etNome);
             etHabilidades = findViewById(R.id.etHabilidades);
 
-            Intent it = getIntent();
-            Bundle params = it.getExtras();
-            int aux = params.getInt("aux");
-            int id = params.getInt("mutanteId");
+            //Intent it = getIntent();
+            //Bundle params = it.getExtras();
+            //int aux = params.getInt("aux");
+            //int id = params.getInt("mutanteId");
 
             //Se os campos não estiverem vazios
-            if(!(etNome.getText().toString().equals("") || etHabilidades.getText().toString().equals(""))){
+            if(!(etNome.getText().toString().equals("") || etHabilidades.getText().toString().equals(""))) {
                 //Se veio da Main
-                if(aux == 0){
-                    List<Mutante> mutantes = mutanteOperation.getAllMutantes();
-                    for (Mutante m : mutantes){
-                        //Se o valor do campo nome for igual ao nome do mutante que está no for, chama a exceção negativa
-                        if (m.getName().equalsIgnoreCase(etNome.getText().toString())){
-                            String e = "Mutante já cadastrado.";
-                            throw  new Exception(e);
-                        }
+                List<Mutante> mutantes = mutanteOperation.getAllMutantes();
+                for (Mutante m : mutantes) {
+                    //Se o valor do campo nome for igual ao nome do mutante que está no for, chama a exceção negativa
+                    if (m.getName().equalsIgnoreCase(etNome.getText().toString())) {
+                        String e = "Mutante já cadastrado.";
+                        throw new Exception(e);
                     }
-                    //Se não cair na exceção, quer dizer que o mutante não existe e pode ser cadastrado
-                    mutanteOperation.addMutante(etNome.getText().toString(), etHabilidades.getText().toString());
                 }
+            } else{
+                String e = "Os campos nome e habilidades não podem ser vazios.";
+                throw new Exception(e);
+            }
+            //Se não cair na exceção, quer dizer que o mutante não existe e pode ser cadastrado
+                    mutanteOperation.addMutante(etNome.getText().toString(), etHabilidades.getText().toString());
                 //Se veio da Detail
-                if (aux == 1){
+                /*if (aux == 1){
                     List<Mutante> mutantes = mutanteOperation.getAllMutantes();
                     for (Mutante m : mutantes){
                         //Se o valor do campo nome for igual ao nome do mutante que está no for e o campo id não, chama a exceção negativa
@@ -79,7 +82,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     }
                     //Se não cair na exceção, quer dizer que o mutante não existe e pode ser cadastrado
                     mutanteOperation.addMutante(etNome.getText().toString(), etHabilidades.getText().toString());
-                }
+                }*/
                 //AlertDialog positivo
                 builder.setTitle("Sucesso")
                         .setMessage("Mutante cadastrado com sucesso.")
@@ -91,7 +94,6 @@ public class CadastrarActivity extends AppCompatActivity {
                                     }
                                 });
                 builder.show();
-            }
         } catch (Exception e){
             //AlertDialog negativo
             builder.setTitle("Erro")
@@ -105,9 +107,6 @@ public class CadastrarActivity extends AppCompatActivity {
                             });
             builder.show();
         }
-
-
-
     }
 
     @Override

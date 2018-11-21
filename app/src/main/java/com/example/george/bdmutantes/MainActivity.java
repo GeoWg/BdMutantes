@@ -7,7 +7,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    int aux = 0;
+    //int aux = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
     public void cadastrarMutante(View view){
         //Envia auxiliar com 0 para saber que veio da Main
         Intent it = new Intent(this, CadastrarActivity.class);
-        Bundle params = new Bundle();
-        params.putInt("aux", aux);
-        it.putExtras(params);
+        //Bundle params = new Bundle();
+        //params.putInt("aux", aux);
+        //it.putExtras(params);
         startActivity(it);
     }
 
