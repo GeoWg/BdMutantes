@@ -21,7 +21,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CadastrarActivity" />
         <activity android:name=".ListarActivity" />
-        <activity android:name=".PesquisarActivity"></activity>
+        <activity android:name=".PesquisarActivity" />
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>

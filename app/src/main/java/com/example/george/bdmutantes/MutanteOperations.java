@@ -64,6 +64,15 @@ public class MutanteOperations {
         return mutantes;
     }
 
+    public Mutante getMutanteById(int id){
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_ID + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+
+        Mutante mid = parseMutante(cursor);
+        cursor.close();
+        return mid;
+    }
+
     private Mutante parseMutante(Cursor cursor){
         Mutante mutante = new Mutante();
         mutante.setId(cursor.getInt(0));
