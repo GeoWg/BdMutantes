@@ -32,7 +32,7 @@ public class ListarActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         Intent it = new Intent(this, DetailActivity.class);
-        it.putExtra("mutanteId", position);
+        it.putExtra("mutanteId", position + 1);
         startActivity(it);
     }
 }

@@ -50,7 +50,7 @@ public class CadastrarActivity extends AppCompatActivity {
             Intent it = getIntent();
             Bundle params = it.getExtras();
             int aux = params.getInt("aux");
-            int id = params.getInt("idMutante");
+            int id = params.getInt("mutanteId");
 
             //Se os campos não estiverem vazios
             if(!(etNome.getText().toString().equals("") || etHabilidades.getText().toString().equals(""))){

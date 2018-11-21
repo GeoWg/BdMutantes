@@ -47,4 +47,13 @@
         android:layout_marginEnd="55dp"
         android:ems="10"
         android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etNome"
+        android:layout_centerVertical="true"
+        android:onClick="deleteMutante"
+        android:text="Deletar" />
 </android.widget.RelativeLayout>

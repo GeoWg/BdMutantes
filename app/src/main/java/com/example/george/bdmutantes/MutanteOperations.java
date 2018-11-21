@@ -44,8 +44,7 @@ public class MutanteOperations {
         return newComment;
     }
 
-    public void deleteMutante(Mutante comment){
-        long id = comment.getId();
+    public void deleteMutante(int id){
         System.out.println("Removido id " + id);
         database.delete(SimpleBDWrapper.MUTANTES,SimpleBDWrapper.MUTANTE_ID + " = " + id, null);
     }
