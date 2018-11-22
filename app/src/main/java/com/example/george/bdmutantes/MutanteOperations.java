@@ -48,6 +48,14 @@ public class MutanteOperations {
         System.out.println("Removido id " + id);
         database.delete(SimpleBDWrapper.MUTANTES,SimpleBDWrapper.MUTANTE_ID + " = " + id, null);
     }
+    public void updateMutante(String name, String skill , int id) {
+        ContentValues values = new ContentValues();
+        values.put(SimpleBDWrapper.MUTANTE_NAME, name);
+        values.put(SimpleBDWrapper.MUTANTE_SKILL, skill);
+        database.update(SimpleBDWrapper.MUTANTES, values, SimpleBDWrapper.MUTANTE_ID + " = "
+                + id, null);
+
+    }
 
     public List getAllMutantes(){
         List mutantes = new ArrayList();

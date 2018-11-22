@@ -1,11 +1,15 @@
 package com.example.george.bdmutantes;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     private MutanteOperations mutanteOperation;
@@ -36,8 +40,44 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    public void alteraMutante(View view){
+    public void alteraMutante(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        EditText nomeMutante = findViewById(R.id.etNome);
+        EditText habilidadeMutante = findViewById(R.id.etHabilidades);
+        Intent it = getIntent();
+        Bundle params = it.getExtras();
+        int mutanteId = params.getInt("mutanteId");
+        try {
+            if (!(nomeMutante.getText().toString().equals("") || habilidadeMutante.getText().toString().equals(""))) {
+            } else {
+                String e = "Os campos nome e habilidades não podem ser vazios.";
+                throw new Exception(e);
+            }
+            mutanteOperation.updateMutante(nomeMutante.getText().toString(), habilidadeMutante.getText().toString(), mutanteId);
 
+            builder.setTitle("Sucesso")
+                    .setMessage("Mutante atualizado com sucesso.")
+                    .setPositiveButton(
+                            "Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                }
+                            });
+            builder.show();
+        }catch (Exception e){
+            //AlertDialog negativo
+            builder.setTitle("Erro")
+                    .setMessage(e.getMessage())
+                    .setPositiveButton(
+                            "Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+            builder.show();
+        }
     }
 
     public void deleteMutante(View view){
