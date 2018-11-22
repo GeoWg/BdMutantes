@@ -52,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="236dp"
-        android:layout_marginBottom="259dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="212dp"
         android:onClick="alteraMutante"
         android:text="Alterar" />
 
@@ -63,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="212dp"
         android:onClick="deleteMutante"
         android:text="Deletar" />
 </android.widget.RelativeLayout>
