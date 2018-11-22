@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListarActivity extends ListActivity {
     private MutanteOperations mutanteOperation;
     ListView list;
-
+    ArrayList<Mutante> mutantes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,7 @@ public class ListarActivity extends ListActivity {
 
         List values = mutanteOperation.getAllMutantes();
         //list.findViewById(R.id.list);
-
+        mutantes = (ArrayList<Mutante>) values;
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,values);
         setListAdapter(adapter);
     }
@@ -31,8 +32,9 @@ public class ListarActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
+        int mutanteId = (int) mutantes.get(position).getId();
         Intent it = new Intent(this, DetailActivity.class);
-        it.putExtra("mutanteId", position + 1);
+        it.putExtra("mutanteId", mutanteId);
         startActivity(it);
     }
 }

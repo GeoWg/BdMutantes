@@ -88,6 +88,7 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, "O mutante foi deletado!", Toast.LENGTH_SHORT).show();
         Intent it2 = new Intent(this, ListarActivity.class);
         startActivity(it2);
+        finish();
     }
 
 }
