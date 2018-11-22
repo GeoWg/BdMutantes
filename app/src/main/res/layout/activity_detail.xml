@@ -39,12 +39,12 @@
     <EditText
         android:id="@+id/etHabilidades"
         android:layout_width="345dp"
-        android:layout_height="wrap_content"
+        android:layout_height="124dp"
         android:layout_alignStart="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_marginTop="127dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/btnAlterar"
@@ -52,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="245dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="259dp"
         android:onClick="alteraMutante"
         android:text="Alterar" />
 
@@ -63,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="260dp"
         android:onClick="deleteMutante"
         android:text="Deletar" />
 </android.widget.RelativeLayout>

@@ -35,7 +35,7 @@ public class ListarActivity extends ListActivity {
         int mutanteId = (int) mutantes.get(position).getId();
         Intent it = new Intent(this, DetailActivity.class);
         it.putExtra("mutanteId", mutanteId);
-        startActivity(it);
         finish();
+        startActivity(it);
     }
 }

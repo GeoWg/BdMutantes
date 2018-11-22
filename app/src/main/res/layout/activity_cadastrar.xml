@@ -40,12 +40,12 @@
     <EditText
         android:id="@+id/etHabilidades"
         android:layout_width="345dp"
-        android:layout_height="wrap_content"
+        android:layout_height="124dp"
         android:layout_alignStart="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_marginTop="127dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/btnCadastrar"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="280dp"
+        android:layout_marginBottom="259dp"
         android:onClick="addMutante"
         android:text="Cadastrar" />
 </android.widget.RelativeLayout>

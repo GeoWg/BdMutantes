@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class DetailActivity extends AppCompatActivity {
     private MutanteOperations mutanteOperation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +26,10 @@ public class DetailActivity extends AppCompatActivity {
         EditText nomeMutante = findViewById(R.id.etNome);
         EditText habilidadeMutante = findViewById(R.id.etHabilidades);
 
-        if(it!=null){
-            mutanteId = it.getIntExtra("mutanteId",3);
+        if (it != null) {
+            mutanteId = it.getIntExtra("mutanteId", 3);
         }
-        if (mutanteId == 0){
+        if (mutanteId == 0) {
             nomeMutante.setText("");
             habilidadeMutante.setText("");
             Toast.makeText(this, "Mutante não encontrado", Toast.LENGTH_SHORT).show();
@@ -38,6 +38,18 @@ public class DetailActivity extends AppCompatActivity {
             nomeMutante.setText(mutante.getName());
             habilidadeMutante.setText(mutante.getHabilidades());
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent it = new Intent(this, ListarActivity.class);
+            finish();
+            startActivity(it);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void alteraMutante(View view) {
@@ -65,7 +77,7 @@ public class DetailActivity extends AppCompatActivity {
                                 }
                             });
             builder.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             //AlertDialog negativo
             builder.setTitle("Erro")
                     .setMessage(e.getMessage())
@@ -80,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    public void deleteMutante(View view){
+    public void deleteMutante(View view) {
         Intent it = getIntent();
         Bundle params = it.getExtras();
         int mutanteId = params.getInt("mutanteId");
@@ -89,8 +101,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent it2 = new Intent(this, ListarActivity.class);
         finish();
         startActivity(it2);
-
     }
-
 }
 
