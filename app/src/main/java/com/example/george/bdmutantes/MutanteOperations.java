@@ -82,7 +82,7 @@ public class MutanteOperations {
 
     public ArrayList getMutanteByName(String name){
         ArrayList mutantes = new ArrayList();
-        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_NAME + " LIKE ?", new String[]{ "%" + name + "%"}, null, null,null, null);
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_NAME + " LIKE ?", new String[]{name}, null, null,null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             Mutante mutante = parseMutante(cursor);
