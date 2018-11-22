@@ -29,9 +29,8 @@ public class PesquisarListaActivity extends ListActivity {
         Bundle params = it.getExtras();
         names = params.getStringArrayList("names");
 
+        //Cria uma lista com os mutantes recebidos da PesquisarActivity
         List values = names;
-        //list.findViewById(R.id.list);
-
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
     }

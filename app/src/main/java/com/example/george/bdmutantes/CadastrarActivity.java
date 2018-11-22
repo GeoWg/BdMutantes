@@ -22,13 +22,11 @@ public class CadastrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        etNome = findViewById(R.id.etNome);
-        etHabilidades = findViewById(R.id.etHabilidades);
-
         mutanteOperation = new MutanteOperations(this);
         mutanteOperation.open();
     }
 
+    //Adicionar um mutante no banco de dados
     public void addMutante(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -36,22 +34,23 @@ public class CadastrarActivity extends AppCompatActivity {
             etNome = findViewById(R.id.etNome);
             etHabilidades = findViewById(R.id.etHabilidades);
 
-            //Se os campos não estiverem vazios
+            //Verifica se os campos não estão vazios
             if (!(etNome.getText().toString().equals("") || etHabilidades.getText().toString().equals(""))) {
-                //Se veio da Main
+                //Carrega a lista de mutantes cadastrados
                 List<Mutante> mutantes = mutanteOperation.getAllMutantes();
+                //Percorre a lista, se o mutante já estiver cadastrado, abre uma exceção
                 for (Mutante m : mutantes) {
-                    //Se o valor do campo nome for igual ao nome do mutante que está no for, chama a exceção negativa
                     if (m.getName().equalsIgnoreCase(etNome.getText().toString())) {
                         String e = "Mutante já cadastrado.";
                         throw new Exception(e);
                     }
                 }
+            //Se os campos estiverem vazios, abre uma exceção
             } else {
                 String e = "Os campos nome e habilidades não podem ser vazios.";
                 throw new Exception(e);
             }
-            //Se não cair na exceção, quer dizer que o mutante não existe e pode ser cadastrado
+            //Se não cair na exceção, quer dizer que o mutante não existe e cadastra o novo mutante
             mutanteOperation.addMutante(etNome.getText().toString(), etHabilidades.getText().toString());
             //AlertDialog positivo
             builder.setTitle("Sucesso")

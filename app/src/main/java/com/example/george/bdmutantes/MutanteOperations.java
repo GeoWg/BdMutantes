@@ -11,6 +11,7 @@ import java.util.List;
 
 
 public class MutanteOperations {
+
     private SimpleBDWrapper dbHelper;
     private String[] MUTANTE_TABLE_COLUMNS = { SimpleBDWrapper.MUTANTE_ID, SimpleBDWrapper.MUTANTE_NAME, SimpleBDWrapper.MUTANTE_SKILL};
     private SQLiteDatabase database;
@@ -48,6 +49,7 @@ public class MutanteOperations {
         System.out.println("Removido id " + id);
         database.delete(SimpleBDWrapper.MUTANTES,SimpleBDWrapper.MUTANTE_ID + " = " + id, null);
     }
+
     public void updateMutante(String name, String skill , int id) {
         ContentValues values = new ContentValues();
         values.put(SimpleBDWrapper.MUTANTE_NAME, name);
@@ -60,7 +62,8 @@ public class MutanteOperations {
     public List getAllMutantes(){
         List mutantes = new ArrayList();
 
-        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, null,null,null,null, null);
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                null,null,null,null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             Mutante mutante = parseMutante(cursor);
@@ -72,7 +75,8 @@ public class MutanteOperations {
     }
 
     public Mutante getMutanteById(int id){
-        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_ID + " = " + id, null, null, null, null);
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                SimpleBDWrapper.MUTANTE_ID + " = " + id, null, null, null, null);
         cursor.moveToFirst();
 
         Mutante mid = parseMutante(cursor);
@@ -82,7 +86,8 @@ public class MutanteOperations {
 
     public ArrayList getMutanteByName(String name){
         ArrayList mutantes = new ArrayList();
-        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_NAME + " LIKE ?", new String[]{name}, null, null,null, null);
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                SimpleBDWrapper.MUTANTE_NAME + " LIKE ?", new String[]{name}, null, null,null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             Mutante mutante = parseMutante(cursor);
@@ -95,7 +100,8 @@ public class MutanteOperations {
 
     public ArrayList getMutanteBySkill(String skill){
         ArrayList mutantes = new ArrayList();
-        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS, SimpleBDWrapper.MUTANTE_SKILL + " LIKE ?", new String[]{ "%" + skill + "%"}, null, null,null, null);
+        Cursor cursor = database.query(SimpleBDWrapper.MUTANTES, MUTANTE_TABLE_COLUMNS,
+                SimpleBDWrapper.MUTANTE_SKILL + " LIKE ?", new String[]{ "%" + skill + "%"}, null, null,null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
             Mutante mutante = parseMutante(cursor);

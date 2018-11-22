@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarActivity extends ListActivity {
+
     private MutanteOperations mutanteOperation;
     ListView list;
     ArrayList<Mutante> mutantes = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +24,8 @@ public class ListarActivity extends ListActivity {
         mutanteOperation = new MutanteOperations(this);
         mutanteOperation.open();
 
+        //Cria uma lista com todos os mutantes cadastrados para mostrar na ListActivity
         List values = mutanteOperation.getAllMutantes();
-        //list.findViewById(R.id.list);
         mutantes = (ArrayList<Mutante>) values;
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,values);
         setListAdapter(adapter);
