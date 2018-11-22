@@ -36,5 +36,6 @@ public class ListarActivity extends ListActivity {
         Intent it = new Intent(this, DetailActivity.class);
         it.putExtra("mutanteId", mutanteId);
         startActivity(it);
+        finish();
     }
 }
