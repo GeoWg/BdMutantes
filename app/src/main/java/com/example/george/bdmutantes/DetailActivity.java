@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
+
     private MutanteOperations mutanteOperation;
+    String nomeAntigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class DetailActivity extends AppCompatActivity {
         Bundle params = it.getExtras();
         int mutanteId = params.getInt("mutanteId");
         Mutante mutante = mutanteOperation.getMutanteById(mutanteId);
+        nomeAntigo = mutante.getName();
         EditText nomeMutante = findViewById(R.id.etNome);
         EditText habilidadeMutante = findViewById(R.id.etHabilidades);
 
@@ -34,7 +39,6 @@ public class DetailActivity extends AppCompatActivity {
             habilidadeMutante.setText("");
             Toast.makeText(this, "Mutante não encontrado", Toast.LENGTH_SHORT).show();
         } else {
-
             nomeMutante.setText(mutante.getName());
             habilidadeMutante.setText(mutante.getHabilidades());
         }
@@ -61,6 +65,16 @@ public class DetailActivity extends AppCompatActivity {
         int mutanteId = params.getInt("mutanteId");
         try {
             if (!(nomeMutante.getText().toString().equals("") || habilidadeMutante.getText().toString().equals(""))) {
+
+                List<Mutante> mutantes = mutanteOperation.getAllMutantes();
+                //Percorre a lista, se o mutante já estiver cadastrado e o nome digitado for diferente do nome que chegou quando a tela foi carregada, abre uma exceção
+                for (Mutante m : mutantes) {
+                    if (m.getName().equalsIgnoreCase(nomeMutante.getText().toString()) && !(nomeAntigo.equalsIgnoreCase(nomeMutante.getText().toString()))) {
+                            String e = "Mutante já cadastrado.";
+                            throw new Exception(e);
+                    }
+                }
+
             } else {
                 String e = "Os campos nome e habilidades não podem ser vazios.";
                 throw new Exception(e);
