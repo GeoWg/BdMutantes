@@ -45,10 +45,17 @@ public class PesquisarActivity extends AppCompatActivity {
             //Cria uma lista com os mutantes que tenham uma das habilidades
             mutantesName = mutanteOperation.getMutanteByName(text.getText().toString());
             mutantesSkill = mutanteOperation.getMutanteBySkill(text.getText().toString());
-            //Joga todos os registros dentro de outra lista
+            //Cria uma lista para armazenar todos os mutantes que atendem a pesquisa
             List<Mutante> mutantes = new ArrayList<>();
+            //Primeiro adiciona todos os mutantes que a pesquisa equivale ao nome, depois adicioona os mutantes que a pesquisa equivale a habilidade, caso não seja repetido
             mutantes.addAll(mutantesName);
-            mutantes.addAll(mutantesSkill);
+            for (Mutante m1 : mutantes){
+                for (Mutante m2 :mutantesSkill){
+                    if (m1.getName() != m2.getName()){
+                        mutantes.add(m2);
+                    }
+                }
+            }
             //Captura apenas o nome desses mutantes e adiciona em outra lista
             for (Mutante m : mutantes){
                 names.add(m.getName());
